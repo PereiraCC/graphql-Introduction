@@ -1,3 +1,3 @@
-# WebServer + RestServer
+# Server with graphql 
 
-Ejecutar ```npm install``` para reconstruir los modulos de node.
+Execute ```npm install``` for rebuild node modules

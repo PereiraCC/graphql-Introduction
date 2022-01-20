@@ -1,11 +1,16 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 
+import schema from './schema';
+import { connect } from './database';
+
+
 require('dotenv').config();
 
-const port = process.env.PORT || 8083;
+const port = process.env.PORT || 3000;
 
 const app = express();
+connect();
 
 app.get('/', (req, res) => {
     res.json({
@@ -13,15 +18,17 @@ app.get('/', (req, res) => {
     })
 });
 
-const schema = {};
 
 app.use('/graphql', graphqlHTTP({
     graphiql : true,
-    schema
+    schema,
+    context: {
+        messageId: 'test',
+    }
 }));
 
 app.listen(port, () => {
-    console.log('Server run in post: ', port)
+    console.log('Server run in port: ', port)
 });
 
  
